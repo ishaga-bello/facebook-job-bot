@@ -16,11 +16,7 @@ def get_jobs():
 
     links = []
     for link in article:
-        article_date = link.find("span", class_="published timeago").get("title")
-        article_date = parser.parse(article_date)
-        present_date = datetime().now().date()
-        if present_date == article_date:
-            links.append(link.find("a").get("href"))
+        links.append(link.find("a").get("href"))
 
 
     jobs = list()
@@ -36,8 +32,6 @@ def get_jobs():
         job_listing['content'] = content
         jobs.append(job_listing)
 
-    return json.dumps(jobs)
+    return jobs
 
-if __name__ == "__main__":
-    job = get_jobs()
-    with open("outfile1.json", "w") as file: json.dump(job, file)
+
